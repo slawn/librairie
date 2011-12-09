@@ -24,7 +24,21 @@ public class Utilisateur {
      */
     public static boolean login(HttpSession session, String login, String pass) {
 
-        // session.setAttribute("login", login);
+        // admin
+        if ( login.equals("admin") ) {
+
+            session.setAttribute("isAdmin", true);
+
+            return true;
+        }
+
+        // user
+        if ( login.equals("user") ) {
+
+            session.setAttribute("isAdmin", false);
+
+            return true;
+        }
         
         return false;
     }
@@ -40,6 +54,9 @@ public class Utilisateur {
 
     public static boolean isAdmin(HttpSession session) {
 
-        return false;
+        if ( session.getAttribute("isAdmin").equals(true) )
+            return true;
+        else
+            return false;
     }
 }

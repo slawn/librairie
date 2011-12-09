@@ -1,29 +1,39 @@
 <%-- 
     Document   : login
-    Created on : 9 dÃ©c. 2011, 09:00:40
+    Created on : 9 déc. 2011, 09:00:40
     Author     : Treemo
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<%
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form name="session" method="POST" action="login.jsp" >
+String login = "";
+String pass = "";
+String loginResult = "";
+
+if (request.getParameter("login") != null)
+    login = request.getParameter("login");
+
+if (request.getParameter("password") != null)
+    pass = request.getParameter("password");
+
+if (request.getParameter("login") != null && request.getParameter("password") != null)
+    loginResult = "<b>Login / mot de passe incorect</b>";
+
+%>
+
+<%@include file="template_header.jsp" %>
+
+        <%=loginResult %>
+        <form name="session" method="POST" action="Login" >
                 <table>
                         <tr>
                                 <td>Login : </td>
-                                <td><input type="text" name="login" /> </td>
+                                <td><input type="text" name="login" value="<%=login %>" /> </td>
                         </tr>
 
                         <tr>
                                 <td>Mot de passe : </td>
-                                <td><input type="password" name="password" /> </td>
+                                <td><input type="password" name="password" value="<%=pass %>" /> </td>
                         </tr>
 
                         <tr>
@@ -31,5 +41,5 @@
                         </tr>
                 </table>
         </form>
-    </body>
-</html>
+
+<%@include file="template_footer.jsp" %>
