@@ -22,7 +22,7 @@
 
         if ( list != null )
             for(int i = 0; i < list.size();i++)
-                out.println( "<b>" + list.get(i) + "</b>" );
+                out.println( "<b>" + list.get(i) + "</b><br />" );
 
         request.getSession().setAttribute("erreur", null);
 

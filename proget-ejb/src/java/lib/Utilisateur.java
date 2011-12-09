@@ -53,6 +53,32 @@ public class Utilisateur {
 
     public static boolean creation(HttpSession session, String login, String password, String password2, String nom, String prenom, String adresse, String email) {
 
+         if ( login.isEmpty() || password.isEmpty() || password2.isEmpty() || nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || email.isEmpty()) {
+
+            if( login.isEmpty() )
+                Log.addErreurMsg(session, "Le login est vide");
+
+            if( password.isEmpty() )
+                Log.addErreurMsg(session, "Le mot de passe est vide");
+
+            if( password2.isEmpty() )
+                Log.addErreurMsg(session, "La verification du mot de passe est vide");
+
+            if( nom.isEmpty() )
+                Log.addErreurMsg(session, "Le nom est vide");
+
+            if( prenom.isEmpty() )
+                Log.addErreurMsg(session, "Le prénom est vide");
+
+            if( adresse.isEmpty() )
+                Log.addErreurMsg(session, "L'adresse est vide");
+
+            if( email.isEmpty() )
+                Log.addErreurMsg(session, "L'email est vide");
+
+            return false;
+        }
+
         if( !password.equals(password2) )
             Log.addErreurMsg(session, "Les deux mot de passe ne corresponde pas");
 
