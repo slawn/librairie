@@ -16,14 +16,10 @@ if (request.getParameter("login") != null)
 if (request.getParameter("password") != null)
     pass = request.getParameter("password");
 
-if (request.getParameter("login") != null && request.getParameter("password") != null)
-    loginResult = "<b>Login / mot de passe incorect</b>";
-
 %>
 
 <%@include file="template_header.jsp" %>
 
-        <%=loginResult %>
         <form name="session" method="POST" action="Login" >
                 <table>
                         <tr>

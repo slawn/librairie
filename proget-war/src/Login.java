@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lib.Utilisateur;
+import log.Log;
 
 /**
  *
@@ -34,6 +35,8 @@ public class Login extends HttpServlet {
                 else
                     resp.sendRedirect("result.do");
             }
+            else
+                Log.addErreurMsg(session, "Login / mot de passe incorect");
         }
 
         RequestDispatcher view = req.getRequestDispatcher("login.jsp");

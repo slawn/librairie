@@ -5,7 +5,11 @@
 
 package lib;
 
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
+import log.Log;
 
 /**
  *
@@ -47,7 +51,10 @@ public class Utilisateur {
 
     }
 
-    public static boolean creation(HttpSession session, String login, String pass) {
+    public static boolean creation(HttpSession session, String login, String password, String password2, String nom, String prenom, String adresse, String email) {
+
+        if( !password.equals(password2) )
+            Log.addErreurMsg(session, "Les deux mot de passe ne corresponde pas");
 
         return false;
     }
