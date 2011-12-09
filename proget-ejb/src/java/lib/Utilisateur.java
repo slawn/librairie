@@ -24,7 +24,7 @@ public class Utilisateur {
      */
     public static boolean login(HttpSession session, String login, String pass) {
 
-        session.setAttribute("login", login);
+        // session.setAttribute("login", login);
         
         return false;
     }

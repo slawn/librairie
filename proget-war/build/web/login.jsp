@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form name="session" method="POST" action="session.do" >
+        <form name="session" method="POST" action="login.jsp" >
                 <table>
                         <tr>
                                 <td>Login : </td>
