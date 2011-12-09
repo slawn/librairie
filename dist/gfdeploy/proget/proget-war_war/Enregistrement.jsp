@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : 9 déc. 2011, 09:00:40
+    Document   : Enregistrement
+    Created on : 9 déc. 2011, 15:18:05
     Author     : Treemo
 --%>
 
@@ -37,10 +37,10 @@ if (request.getParameter("login") != null && request.getParameter("password") !=
                         </tr>
 
                         <tr>
-                                <td style="text-align:center"><input type="submit" name="valider" /></td>
-                                <td style="text-align:center"><a href="Enregistrement">Enregistrement</a></td>
+                                <td colspan="2" style="text-align:center"><input type="submit" name="valider" /></td>
                         </tr>
                 </table>
         </form>
 
 <%@include file="template_footer.jsp" %>
+

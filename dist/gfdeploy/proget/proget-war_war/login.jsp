@@ -37,7 +37,8 @@ if (request.getParameter("login") != null && request.getParameter("password") !=
                         </tr>
 
                         <tr>
-                                <td colspan="2" style="text-align:center"><input type="submit" name="valider" /></td>
+                                <td style="text-align:center"><input type="submit" name="valider" /></td>
+                                <td style="text-align:center"><a href="Enregistrement">Enregistrement</a></td>
                         </tr>
                 </table>
         </form>
