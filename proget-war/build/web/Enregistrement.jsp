@@ -68,12 +68,12 @@ if (request.getParameter("email") != null)
 
                         <tr>
                                 <td>Adresse : </td>
-                                <td><input type="text" name="adresse" value="<%=adresse %>" /> </td>
+                                <td><textarea name="adresse" ><%=adresse %></textarea></td>
                         </tr>
 
                         <tr>
                                 <td>Email : </td>
-                                <td><input type="text" name="email" value="<%=email %>" /> </td>
+                                <td><input type="text" name="email" value="<%=email %>" /></td>
                         </tr>
 
                         <tr>

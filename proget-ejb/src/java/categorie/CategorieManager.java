@@ -5,23 +5,35 @@
 
 package categorie;
 
-import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
  * @author Treemo
  */
-@Stateful
+@Stateful(name="CategorieManager")
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class CategorieManager implements CategorieManagerBean {
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
+    @PersistenceContext(unitName="bsPU")
     EntityManager em;
+
+    @Resource
+    SessionContext context;
 
     /**
      * recupere un object Categorie depuis sont ID

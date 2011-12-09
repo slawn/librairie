@@ -5,9 +5,6 @@
 
 package lib;
 
-import java.lang.String;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import log.Log;
 
@@ -51,9 +48,23 @@ public class Utilisateur {
 
     }
 
+    /**
+     *
+     * test si le compte peut etre cree et si oui il le cree
+     *
+     * @param session
+     * @param login
+     * @param password
+     * @param password2
+     * @param nom
+     * @param prenom
+     * @param adresse
+     * @param email
+     * @return boolean
+     */
     public static boolean creation(HttpSession session, String login, String password, String password2, String nom, String prenom, String adresse, String email) {
 
-         if ( login.isEmpty() || password.isEmpty() || password2.isEmpty() || nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || email.isEmpty()) {
+         if ( login.isEmpty() || password.isEmpty() || password2.isEmpty() || nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || email.isEmpty() || !password.equals(password2) || !isValidEmailAddress(email) ) {
 
             if( login.isEmpty() )
                 Log.addErreurMsg(session, "Le login est vide");
@@ -76,20 +87,48 @@ public class Utilisateur {
             if( email.isEmpty() )
                 Log.addErreurMsg(session, "L'email est vide");
 
+            if( !password.equals(password2) )
+                Log.addErreurMsg(session, "Les deux mot de passe ne corresponde pas");
+
+            if( !isValidEmailAddress(email) )
+                Log.addErreurMsg(session, "L'adresse email est invalide");
+
             return false;
         }
 
-        if( !password.equals(password2) )
-            Log.addErreurMsg(session, "Les deux mot de passe ne corresponde pas");
+        
 
         return false;
     }
 
+    /**
+     *
+     * l'utilisateur est un admin ?
+     *
+     * @param session
+     * @return boolean
+     */
     public static boolean isAdmin(HttpSession session) {
 
         if ( session.getAttribute("isAdmin").equals(true) )
             return true;
         else
             return false;
+    }
+
+    /**
+     * l'adresse email est valide
+     *
+     * @param email
+     * @return boolean
+     */
+    public static boolean isValidEmailAddress(String email) {
+
+	try {
+		new javax.mail.internet.InternetAddress(email, true);
+	} catch (javax.mail.internet.AddressException e) {
+		return false;
+	}
+	return true;
     }
 }

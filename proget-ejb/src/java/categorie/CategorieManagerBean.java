@@ -5,15 +5,14 @@
 
 package categorie;
 
-import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Treemo
  */
-@Local
+@Remote
 public interface CategorieManagerBean {
 
     /**
