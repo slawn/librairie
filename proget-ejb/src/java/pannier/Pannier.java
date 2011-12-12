@@ -12,7 +12,7 @@ import livre.Livre;
  *
  * @author edge
  */
-class Pannier {
+public class Pannier {
 
     private List<Livre>articleList;
     private float prix;
@@ -22,8 +22,8 @@ class Pannier {
 
         return this.articleList;
     }
-    public void set_articleList(){
-        
+    public void set_articleList(Livre livre_suivant){
+        articleList.add(livre_suivant);
     }
     public float get_prix(){
         return this.prix;
