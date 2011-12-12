@@ -13,5 +13,12 @@ import javax.ejb.Local;
  */
 @Local
 public interface CommandeManagerBean {
+   
+
     
+    public java.util.List<commande.Commande> commandeList(lib.Utilisateur client);
+
+    public commande.Commande getCommandeById(int id);
+
+    public void creationDepuisPannier(<any> new_commande);
 }
