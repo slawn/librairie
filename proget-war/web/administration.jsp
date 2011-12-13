@@ -1,19 +1,11 @@
-<%-- 
-    Document   : administration.jsp
-    Created on : 13 dÃ©c. 2011, 10:49:43
+<%--
+    Document   : MonCompte
+    Created on : 13 déc. 2011, 13:43:07
     Author     : Treemo
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.util.ArrayList"%>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@include file="template_header.jsp" %>
+
+<%@include file="template_footer.jsp" %>

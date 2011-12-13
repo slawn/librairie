@@ -13,17 +13,17 @@ String adresse = "";
 String email = "";
 
 
-if (request.getParameter("prenom") != null)
-    prenom = request.getParameter("prenom");
+if (request.getAttribute("prenom") != null)
+    prenom = request.getAttribute("prenom").toString();
 
-if (request.getParameter("nom") != null)
-    nom = request.getParameter("nom");
+if (request.getAttribute("nom") != null)
+    nom = request.getAttribute("nom").toString();
 
-if (request.getParameter("adresse") != null)
-    adresse = request.getParameter("adresse");
+if (request.getAttribute("adresse") != null)
+    adresse = request.getAttribute("adresse").toString();
 
-if (request.getParameter("email") != null)
-    email = request.getParameter("email");
+if (request.getAttribute("email") != null)
+    email = request.getAttribute("email").toString();
 
 %>
 

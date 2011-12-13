@@ -23,6 +23,10 @@ public class SessionUtilisateur implements Serializable {
     public SessionUtilisateur(HttpServletRequest req) {
 
         session = req.getSession();
+
+        // session deja initialisé ?
+        if ( session.getAttribute("isAdmin") == null )
+            logout();
     }
 
     /**
@@ -32,8 +36,12 @@ public class SessionUtilisateur implements Serializable {
      */
     public void login(Client client) {
 
+       if ( client == null )
+           return;
+       
        session.setAttribute("compteId", client.getIdClient() );
        session.setAttribute("isAdmin", false );
+       session.setAttribute("client", client);
     }
 
     /**
@@ -71,6 +79,7 @@ public class SessionUtilisateur implements Serializable {
 
         session.setAttribute("compteId", 0 );
         session.setAttribute("isAdmin", false );
+        session.setAttribute("client", null);
     }
 
     /**
@@ -125,5 +134,10 @@ public class SessionUtilisateur implements Serializable {
             return false;
         
         return true;
+    }
+
+    public Client getClient() {
+
+        return (Client) session.getAttribute("client");
     }
 }

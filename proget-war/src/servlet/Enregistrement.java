@@ -8,6 +8,7 @@ package servlet;
 
 import java.io.IOException;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +40,9 @@ public class Enregistrement extends HttpServlet {
         String email = req.getParameter("email");
 
         SessionUtilisateur session = new SessionUtilisateur(req);
+
+        if ( session.isConnected() )
+               resp.sendRedirect("./");
 
         if (login != null && session != null ) {
 
@@ -72,18 +76,34 @@ public class Enregistrement extends HttpServlet {
                     Log.addErreurMsg(session, "L'adresse email est invalide");
             }
             else {
-                
-                Client client = utilisateur.creationClient(login, password, password2, nom, prenom, adresse, email);
-                
-                if ( client != null ) {
 
+                try {
+
+                    utilisateur.creationClient(login, password, password2, nom, prenom, adresse, email);
+                    session.login( utilisateur.loginClient(login, password) );
+
+                    if ( session.isConnected() ) {
+
+                        String page = req.getHeader("referer");
+
+                        if ( page == null )
+                            page = "./";
+
+                        resp.sendRedirect( page );
+                    }
+                    
+                } catch ( EJBException e) {
+
+                    session.addErreur("Login déja utilisé.");
                 }
-            
             }
         }
 
-        RequestDispatcher view = req.getRequestDispatcher("Enregistrement.jsp");
-        view.forward(req, resp);
+        if ( !session.isConnected() ) {
+            
+            RequestDispatcher view = req.getRequestDispatcher("Enregistrement.jsp");
+            view.forward(req, resp);
+        }
     }
 
     protected void doPost(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {

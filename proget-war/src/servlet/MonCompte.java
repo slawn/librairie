@@ -28,24 +28,32 @@ public class MonCompte extends HttpServlet {
 
     protected void doGet(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
 
-        String nom = "";
-        String prenom = "";
-        String adresse = "";
-        String email = "";
-
-    if (req.getParameter("prenom") != null)
-        prenom = req.getParameter("prenom");
-
-    if (req.getParameter("nom") != null)
-        nom = req.getParameter("nom");
-
-    if (req.getParameter("adresse") != null)
-        adresse = req.getParameter("adresse");
-
-    if (req.getParameter("email") != null)
-        email = req.getParameter("email");
-
         SessionUtilisateur session = new SessionUtilisateur(req);
+
+        if ( !session.isConnected() ) {
+
+            resp.sendRedirect("./");
+            return;
+        }
+
+        Client client = session.getClient();
+
+        String nom = client.getNomClient();
+        String prenom = client.getPrenomClient();
+        String adresse = client.getAdressePostaleClient();
+        String email = client.getEmailClient();
+
+        if (req.getParameter("prenom") != null)
+            prenom = req.getParameter("prenom");
+
+        if (req.getParameter("nom") != null)
+            nom = req.getParameter("nom");
+
+        if (req.getParameter("adresse") != null)
+            adresse = req.getParameter("adresse");
+
+        if (req.getParameter("email") != null)
+            email = req.getParameter("email");
 
         if ( nom != null || prenom != null || adresse != null ||  email != null ) {
 
@@ -68,9 +76,22 @@ public class MonCompte extends HttpServlet {
             }
             else {
 
-            //    Client client = utilisateur.;
+                if ( client != null ) {
+
+                    client.setAdressePostaleClient(adresse);
+                    client.setEmailClient(email);
+                    client.setNomClient(nom);
+                    client.setPrenomClient(prenom);
+
+                    utilisateur.saveClient( client );
+                }
             }
         }
+
+        req.setAttribute("nom", client.getNomClient() );
+        req.setAttribute("prenom", client.getPrenomClient() );
+        req.setAttribute("adresse", client.getAdressePostaleClient() );
+        req.setAttribute("email", client.getEmailClient() );
 
         RequestDispatcher view = req.getRequestDispatcher("MonCompte.jsp");
         view.forward(req, resp);

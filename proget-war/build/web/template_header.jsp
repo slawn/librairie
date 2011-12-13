@@ -6,6 +6,9 @@
 
 <%@page import="session.SessionUtilisateur"%>
 <%@page import="java.util.ArrayList"%>
+<%
+    SessionUtilisateur sessionUser = new SessionUtilisateur(request);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML >
 
@@ -26,13 +29,15 @@
             <ul class="menu1">
             <li><a href="./"><b>Accueil</b></a></li>
             <li><a href="Catalogue"><b>Catalogue</b></a></li>
-            <li><a href="Panier"><b>Panier</b></a></li>
-            <li><a href="Contacts"><b>Contactez-nous</b></a></li>
-
             <%
-                SessionUtilisateur sessionUser = new SessionUtilisateur(request);
 
-                if ( sessionUser.isConnected() ) {
+                if ( sessionUser.isAdmin() )
+                        out.println("<li><a href=\"Panier\"><b>Panier</b></a></li>");
+            %>
+            <li><a href="Contacts"><b>Contactez-nous</b></a></li>
+            <%
+
+             if ( sessionUser.isConnected() ) {
 
                     if ( sessionUser.isAdmin() )
                         out.println("<li><a href=\"Administration\"><b>Administration</b></a></li>");

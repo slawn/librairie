@@ -84,4 +84,6 @@ public interface UtilisateurManagerBean {
      * @return hash
      */
     public String hashMdp(String login, String pass);
+
+    public void saveClient(Client client);
 }

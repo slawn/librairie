@@ -185,4 +185,15 @@ public class UtilisateurManager implements UtilisateurManagerBean {
 
         return hashword;
     }
+
+    /**
+     * sauvegarde un client
+     * 
+     * @param client
+     */
+    @Override
+    public void saveClient(Client client) {
+
+        this.client.merge(client);
+    }
 }
