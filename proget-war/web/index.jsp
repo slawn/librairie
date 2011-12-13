@@ -7,6 +7,7 @@
 <%@include file="template_header.jsp" %>
 
         <a href="Login">Login</a>
+        <a href="Logout">Logout</a>
 
 
 <%@include file="template_footer.jsp" %>

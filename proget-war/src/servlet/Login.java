@@ -7,6 +7,8 @@ package servlet;
 
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +35,9 @@ public class Login extends HttpServlet {
         String password = req.getParameter("password");
         SessionUtilisateur session = new SessionUtilisateur(req);
 
+        // redirection si deja connecté
+        redirectionConnecte(session, req, resp);
+
         if (login != null && password != null ) {
 
 
@@ -49,23 +54,46 @@ public class Login extends HttpServlet {
                     session.login(client);
             }
 
-            if ( session.isConnected() ) {
-
-                if ( session.isAdmin() )
-                    resp.sendRedirect("result.do");
-                else
-                    resp.sendRedirect("result.do");
-            }
-            else
+            if ( !redirectionConnecte(session, req, resp) )
                 session.addErreur("Login / mot de passe incorect");
        }
-        
-        RequestDispatcher view = req.getRequestDispatcher("login.jsp");
-        view.forward(req, resp);
+
+        if ( !session.isConnected() ) {
+
+            RequestDispatcher view = req.getRequestDispatcher("login.jsp");
+            view.forward(req, resp);
+        }
+    }
+
+    private boolean redirectionConnecte(SessionUtilisateur session, HttpServletRequest req, HttpServletResponse resp) {
+
+        if ( session.isConnected() ) {
+
+            try {
+                if (session.isAdmin()) {
+                    resp.sendRedirect("Administration");
+                } else {
+
+                    String page = req.getHeader("referer");
+
+                    if ( page == null )
+                        page = "./";
+
+                    resp.sendRedirect( page );
+                }
+                return true;
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return false;
     }
 
     protected void doPost(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
 
         doGet(req , resp);
     }
+
+
 }

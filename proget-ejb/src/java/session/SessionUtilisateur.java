@@ -26,12 +26,9 @@ public class SessionUtilisateur implements Serializable {
     }
 
     /**
-     * connect un utilisateur a sa this
+     * connect un utilisateur a sa session
      *
-     * @param this
-     * @param login
-     * @param password
-     * @return
+     * @param client
      */
     public void login(Client client) {
 
@@ -40,12 +37,9 @@ public class SessionUtilisateur implements Serializable {
     }
 
     /**
-     * connect un utilisateur a sa this
+     * connect un admin a sa session
      *
-     * @param this
-     * @param login
-     * @param password
-     * @return
+     * @param admin
      */
     public void login(Admin admin) {
 
@@ -86,7 +80,7 @@ public class SessionUtilisateur implements Serializable {
      */
     public ArrayList<String> getErreur() {
 
-        ArrayList<String> erreurList =  (ArrayList<String>) session.getAttribute("erreurList" );
+        ArrayList<String> erreurList = (ArrayList<String>) session.getAttribute("erreurList" );
 
         if ( erreurList == null)
             return new ArrayList<String>();
@@ -108,7 +102,7 @@ public class SessionUtilisateur implements Serializable {
 
         erreurList.add(erreur);
 
-        session.setAttribute("erreurList", erreur);
+        session.setAttribute("erreurList", erreurList);
     }
 
     /**

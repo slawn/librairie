@@ -48,10 +48,12 @@ public class UtilisateurManager implements UtilisateurManagerBean {
     @Override
     public Admin loginAdmin(String login, String pass) {
 
-        String q= "SELECT b From t_admin b where b.login_admin LIKE :login AND b.mdp_admin LIKE :pass ";
+        pass = hashMdp(login, pass);
+
+        String q= "SELECT a FROM Admin a WHERE a.loginAdmin = :login AND a.mdpAdmin = :pass";
         Query query = admin.createQuery(q);
         query.setParameter("login", login);
-        query.setParameter("pass", pass);
+       query.setParameter("pass", pass);
         List<Admin> result = query.getResultList();
 
         if ( !result.isEmpty() )
@@ -71,7 +73,9 @@ public class UtilisateurManager implements UtilisateurManagerBean {
     @Override
     public Client loginClient(String login, String pass) {
 
-        String q = "SELECT b From t_client b where b.login_client LIKE :login AND b.mdp_client LIKE :pass ";
+        pass = hashMdp(login, pass);
+        
+        String q = "SELECT c FROM Client c WHERE c.loginClient = :login AND c.mdpClient = :pass";
         Query query = client.createQuery(q);
         query.setParameter("login", login);
         query.setParameter("pass", pass);
