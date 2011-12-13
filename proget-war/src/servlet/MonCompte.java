@@ -6,7 +6,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import log.Log;
 import session.SessionUtilisateur;
+import utilisateur.Client;
 import utilisateur.UtilisateurManagerBean;
 
 /**
@@ -28,14 +28,26 @@ public class MonCompte extends HttpServlet {
 
     protected void doGet(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
 
-        String nom = req.getParameter("nom");
-        String prenom = req.getParameter("prenom");
-        String adresse = req.getParameter("adresse");
-        String email = req.getParameter("email");
+        String nom = "";
+        String prenom = "";
+        String adresse = "";
+        String email = "";
+
+    if (req.getParameter("prenom") != null)
+        prenom = req.getParameter("prenom");
+
+    if (req.getParameter("nom") != null)
+        nom = req.getParameter("nom");
+
+    if (req.getParameter("adresse") != null)
+        adresse = req.getParameter("adresse");
+
+    if (req.getParameter("email") != null)
+        email = req.getParameter("email");
 
         SessionUtilisateur session = new SessionUtilisateur(req);
 
-        if ( session != null ) {
+        if ( nom != null || prenom != null || adresse != null ||  email != null ) {
 
             if ( nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || email.isEmpty() || !utilisateur.isValidEmailAddress(email) ) {
 
@@ -56,9 +68,7 @@ public class MonCompte extends HttpServlet {
             }
             else {
 
-             //   Client client = utilisateur.creationClient(login, password, password2, nom, prenom, adresse, email);
-
-                
+            //    Client client = utilisateur.;
             }
         }
 

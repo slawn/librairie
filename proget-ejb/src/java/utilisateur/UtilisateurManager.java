@@ -53,7 +53,7 @@ public class UtilisateurManager implements UtilisateurManagerBean {
         String q= "SELECT a FROM Admin a WHERE a.loginAdmin = :login AND a.mdpAdmin = :pass";
         Query query = admin.createQuery(q);
         query.setParameter("login", login);
-       query.setParameter("pass", pass);
+        query.setParameter("pass", pass);
         List<Admin> result = query.getResultList();
 
         if ( !result.isEmpty() )

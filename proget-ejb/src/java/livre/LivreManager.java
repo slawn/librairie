@@ -17,13 +17,19 @@ import javax.persistence.Query;
  */
 @Stateful
 public class LivreManager implements LivreManagerBean {
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 
     @PersistenceContext(unitName="bsPU")
     EntityManager em;
 
+    /**
+     *
+     * recupere les livre de la categorie
+     *
+     * @param categorieId
+     * @param page
+     * @param nombre
+     * @return
+     */
     @Override
     public List<Livre> getLivreByCategorie(int categorieId, int page, int nombre) {
 
@@ -37,6 +43,12 @@ public class LivreManager implements LivreManagerBean {
         return query.getResultList();
     }
 
+    /**
+     * recherche un livre
+     *
+     * @param pattern
+     * @return Livre
+     */
     @Override
     public List<Livre> recherche(String pattern) {
 
@@ -47,12 +59,24 @@ public class LivreManager implements LivreManagerBean {
         return query.getResultList();
     }
 
+    /**
+     * recupere un livre via son id
+     *
+     * @param id
+     * @return Livre
+     */
     @Override
     public Livre getLivreById(int id) {
 
         return em.find(Livre.class,id);
     }
 
+    /**
+     * recuprer le "top vente"
+     *
+     * @param nombre
+     * @return
+     */
     @Override
     public List<Livre> getLivreByMostVente(int nombre) {
 
@@ -62,6 +86,11 @@ public class LivreManager implements LivreManagerBean {
         return query.getResultList();
     }
 
+    /**
+     * retour les livre en rupture de stock
+     *
+     * @return
+     */
     @Override
     public List<Livre> getLivreByEnRupture() {
 
@@ -70,22 +99,36 @@ public class LivreManager implements LivreManagerBean {
         return query.getResultList();
     }
 
+    /**
+     * ajoute un livre
+     *
+     * @param livre
+     */
     @Override
     public void addLivre(Livre livre) {
 
          em.persist(livre);
     }
 
+    /*
+     * sauvegarde un livre
+     *
+     * @param livre
+     */
     @Override
     public void updateLivre(Livre livre) {
 
         em.merge(livre);
     }
 
+    /**
+     * suprime un livre
+     *
+     * @param livre
+     */
     @Override
     public void delLivre(Livre livre) {
 
          em.remove(livre);
     }
-    
 }
