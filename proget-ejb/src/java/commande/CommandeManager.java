@@ -11,7 +11,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import lib.Utilisateur;
+import utilisateur.Client;
 
 /**
  *
@@ -26,7 +26,7 @@ public class CommandeManager implements CommandeManagerBean {
     EntityManager em;
 
 
-    public List<Commande> commandeList(Utilisateur client){
+    public List<Commande> commandeList(Client client){
 
         Query query = em.createNamedQuery("retrieveAllCategories");
         return query.getResultList();

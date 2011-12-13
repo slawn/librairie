@@ -5,7 +5,9 @@
 
 package commande;
 
+import java.util.List;
 import javax.ejb.Local;
+import utilisateur.Client;
 
 /**
  *
@@ -16,7 +18,7 @@ public interface CommandeManagerBean {
    
 
     
-    public java.util.List<commande.Commande> commandeList(lib.Utilisateur client);
+    public List<Commande> commandeList(Client client);
 
     public commande.Commande getCommandeById(int id);
 
