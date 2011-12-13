@@ -4,6 +4,7 @@
     Author     : Treemo
 --%>
 
+<%@page import="session.SessionUtilisateur"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -18,12 +19,14 @@
         <%
 
         // affichage puis supression du buffer d'erreur
-        ArrayList<Integer> list = (ArrayList<Integer>)request.getSession().getAttribute("erreur");
+
+        SessionUtilisateur sessionUser = new SessionUtilisateur(request);
+        ArrayList<String> list = sessionUser.getErreur();
 
         if ( list != null )
             for(int i = 0; i < list.size();i++)
                 out.println( "<b>" + list.get(i) + "</b><br />" );
 
-        request.getSession().setAttribute("erreur", null);
+        sessionUser.clearErreur();
 
         %>

@@ -3,20 +3,14 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Ven 09 Décembre 2011 à 10:14
+-- Généré le : Mar 13 Décembre 2011 à 08:34
 -- Version du serveur: 5.1.36
 -- Version de PHP: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Base de données: `booxstore`
+-- Base de données: `booxtore`
 --
 
 -- --------------------------------------------------------
@@ -32,11 +26,6 @@ CREATE TABLE IF NOT EXISTS `a_contenir` (
   KEY `id_commande` (`id_commande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `a_contenir`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -47,13 +36,9 @@ CREATE TABLE IF NOT EXISTS `t_admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
   `login_admin` varchar(50) NOT NULL,
   `mdp_admin` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_admin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `t_admin`
---
-
+  PRIMARY KEY (`id_admin`),
+  UNIQUE KEY `login_admin` (`login_admin`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -65,12 +50,7 @@ CREATE TABLE IF NOT EXISTS `t_categorie` (
   `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
   `nom_categorie` varchar(100) NOT NULL,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `t_categorie`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -88,12 +68,7 @@ CREATE TABLE IF NOT EXISTS `t_client` (
   `email_client` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id_client`),
   UNIQUE KEY `login_client` (`login_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `t_client`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -109,11 +84,6 @@ CREATE TABLE IF NOT EXISTS `t_commande` (
   `adresse_postale_commande` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_commande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `t_commande`
---
-
 
 -- --------------------------------------------------------
 
@@ -138,11 +108,6 @@ CREATE TABLE IF NOT EXISTS `t_livre` (
   PRIMARY KEY (`id_livre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `t_livre`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -162,11 +127,6 @@ CREATE TABLE IF NOT EXISTS `t_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Contenu de la table `t_log`
---
-
-
---
 -- Contraintes pour les tables exportées
 --
 
@@ -174,5 +134,5 @@ CREATE TABLE IF NOT EXISTS `t_log` (
 -- Contraintes pour la table `a_contenir`
 --
 ALTER TABLE `a_contenir`
-  ADD CONSTRAINT `a_contenir_ibfk_2` FOREIGN KEY (`id_commande`) REFERENCES `t_commande` (`id_commande`),
-  ADD CONSTRAINT `a_contenir_ibfk_1` FOREIGN KEY (`id_livre`) REFERENCES `t_livre` (`id_livre`);
+  ADD CONSTRAINT `a_contenir_ibfk_1` FOREIGN KEY (`id_livre`) REFERENCES `t_livre` (`id_livre`),
+  ADD CONSTRAINT `a_contenir_ibfk_2` FOREIGN KEY (`id_commande`) REFERENCES `t_commande` (`id_commande`);
