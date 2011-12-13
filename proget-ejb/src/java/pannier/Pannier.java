@@ -32,8 +32,8 @@ public class Pannier {
         this.prix=le_prix;
     }
 
-    public void addLivre(){
-
+    public void addLivre(Livre livre_ajout){
+        set_articleList(livre_ajout);
     }
     
     public void suppressionLivre(){

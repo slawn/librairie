@@ -31,7 +31,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Commande.findByIdClient", query = "SELECT c FROM Commande c WHERE c.idClient = :idClient"),
     @NamedQuery(name = "Commande.findByDateCommande", query = "SELECT c FROM Commande c WHERE c.dateCommande = :dateCommande"),
     @NamedQuery(name = "Commande.findByEtatCommande", query = "SELECT c FROM Commande c WHERE c.etatCommande = :etatCommande"),
-    @NamedQuery(name = "Commande.findByAdressePostaleCommande", query = "SELECT c FROM Commande c WHERE c.adressePostaleCommande = :adressePostaleCommande")})
+    @NamedQuery(name = "Commande.findByAdressePostaleCommande", query = "SELECT c FROM Commande c WHERE c.adressePostaleCommande = :adressePostaleCommande"),
+    @NamedQuery(name = "Commande.findByPrixCommande", query = "SELECT c FROM Commande c WHERE c.prixCommande = :prixCommande")})
 public class Commande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,6 +50,8 @@ public class Commande implements Serializable {
     private Integer etatCommande;
     @Column(name = "adresse_postale_commande")
     private String adressePostaleCommande;
+    @Column(name = "prix_commande")
+    private Float prixCommande;
 
     public Commande() {
     }
@@ -100,6 +103,14 @@ public class Commande implements Serializable {
 
     public void setAdressePostaleCommande(String adressePostaleCommande) {
         this.adressePostaleCommande = adressePostaleCommande;
+    }
+
+    public Float getPrixCommande() {
+        return prixCommande;
+    }
+
+    public void setPrixCommande(Float prixCommande) {
+        this.prixCommande = prixCommande;
     }
 
     @Override
