@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import livre.LivreManagerBean;
 import utilisateur.UtilisateurManager;
 import utilisateur.UtilisateurManagerBean;
 
@@ -26,13 +27,12 @@ import utilisateur.UtilisateurManagerBean;
 public class Index extends HttpServlet {
 
     @EJB
-    UtilisateurManagerBean utilisateur;
+    LivreManagerBean livre;
 
     protected void doGet(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
 
-
-     //    utilisateur.addAdmin("admin3", "admin3");
-
+        req.setAttribute("topVente", livre.getLivreByMostVente(10) );
+        
         RequestDispatcher view = req.getRequestDispatcher("index.jsp");
         view.forward(req, resp);
     }
