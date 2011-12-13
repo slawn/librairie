@@ -8,14 +8,14 @@
 <%@page import="java.util.List"%>
 <%@include file="template_header.jsp" %>
 
-        <%
+<%
 
-        List<Livre> listTopLivre = (List<Livre>)request.getAttribute("topVente");
+List<Livre> listTopLivre = (List<Livre>)request.getAttribute("topVente");
 
-        if ( listTopLivre != null )
-            for(int i = 0; i < listTopLivre.size();i++)
-                out.println( "<b>" + listTopLivre.get(i).getTitreLivre() + " => " + listTopLivre.get(i).getNombreVenteLivre() + "</b><br />" );
+if ( listTopLivre != null )
+    for(int i = 0; i < listTopLivre.size();i++)
+        out.println( "<b>" + listTopLivre.get(i).getTitreLivre() + " => " + listTopLivre.get(i).getNombreVenteLivre() + "</b><br />" );
 
-        %>
+%>
 
 <%@include file="template_footer.jsp" %>

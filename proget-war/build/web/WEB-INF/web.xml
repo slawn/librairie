@@ -28,6 +28,18 @@
         <servlet-name>Contacts</servlet-name>
         <servlet-class>servlet.Contacts</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Catalogue</servlet-name>
+        <servlet-class>servlet.Catalogue</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Panier</servlet-name>
+        <servlet-class>servlet.Panier</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Livre</servlet-name>
+        <servlet-class>servlet.Livre</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -55,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>Contacts</servlet-name>
         <url-pattern>/Contacts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Catalogue</servlet-name>
+        <url-pattern>/Catalogue</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Panier</servlet-name>
+        <url-pattern>/Panier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Livre</servlet-name>
+        <url-pattern>/Livre</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>1440</session-timeout>

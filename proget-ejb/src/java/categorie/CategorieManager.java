@@ -53,7 +53,7 @@ public class CategorieManager implements CategorieManagerBean {
      */
     public List<Categorie> getCategorieList() {
 
-        Query query = em.createNamedQuery("retrieveAllCategories");
+        Query query = em.createQuery("SELECT c FROM Categorie c");
         return query.getResultList();
     }
 

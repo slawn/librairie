@@ -31,7 +31,7 @@
             <li><a href="Catalogue"><b>Catalogue</b></a></li>
             <%
 
-                if ( sessionUser.isAdmin() )
+                if ( !sessionUser.isAdmin() )
                         out.println("<li><a href=\"Panier\"><b>Panier</b></a></li>");
             %>
             <li><a href="Contacts"><b>Contactez-nous</b></a></li>

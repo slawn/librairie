@@ -18,7 +18,8 @@ import utilisateur.Client;
  */
 public class SessionUtilisateur implements Serializable {
     
-    private final HttpSession session;
+    private HttpSession session;
+    private final int defautPageTaille = 10;
 
     public SessionUtilisateur(HttpServletRequest req) {
 
@@ -40,7 +41,6 @@ public class SessionUtilisateur implements Serializable {
            return;
        
        session.setAttribute("compteId", client.getIdClient() );
-       session.setAttribute("isAdmin", false );
        session.setAttribute("client", client);
     }
 
@@ -80,6 +80,7 @@ public class SessionUtilisateur implements Serializable {
         session.setAttribute("compteId", 0 );
         session.setAttribute("isAdmin", false );
         session.setAttribute("client", null);
+        session.setAttribute("pageTaille", defautPageTaille);
     }
 
     /**
@@ -136,8 +137,43 @@ public class SessionUtilisateur implements Serializable {
         return true;
     }
 
+    /**
+     * recupere l'object du client
+     *
+     * @return
+     */
     public Client getClient() {
 
         return (Client) session.getAttribute("client");
+    }
+
+    /**
+     * defini le nombre d'element par page
+     *
+     * @param taille
+     */
+    public void setPageTaille(String taille) {
+
+        if ( taille == null )
+            return;
+
+        int tailleInt = defautPageTaille;
+
+        try {
+
+            tailleInt = Integer.parseInt(taille);
+        } catch ( NumberFormatException e ) {}
+
+        session.setAttribute("pageTaille", tailleInt);
+    }
+
+    /**
+     * recupere le nombre d'element par page
+     *
+     * @return taille
+     */
+    public int getPageTaille() {
+
+        return Integer.parseInt( session.getAttribute("pageTaille").toString() );
     }
 }
