@@ -54,5 +54,5 @@ else if ( listCategorie != null ) {
             out.println("</table>");
     }
  %>
-</br>
+<br/>
 <%@include file="template_footer.jsp" %>

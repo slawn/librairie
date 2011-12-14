@@ -19,6 +19,6 @@ List<Livre> listTopLivre = (List<Livre>)request.getAttribute("topVente");
 LibJsp.afficherListLivre(out, listTopLivre);
 
 %>
-</br>
+<br/>
 
 <%@include file="template_footer.jsp" %>
