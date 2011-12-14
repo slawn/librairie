@@ -4,6 +4,6 @@
     Author     : Treemo
 --%>
 </article>
-<footer> 2011 Exemple Inc. </footer>
+<footer> 2011 booXtore Inc. </footer>
 </body>
 </html>

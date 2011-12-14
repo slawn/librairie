@@ -4,18 +4,21 @@
     Author     : Treemo
 --%>
 
+<%@page import="lib.LibJsp"%>
 <%@page import="livre.Livre"%>
 <%@page import="java.util.List"%>
 <%@include file="template_header.jsp" %>
 
+<div align="center">
+    <h3>Meilleures ventes</h3>
+</div>
 <%
 
 List<Livre> listTopLivre = (List<Livre>)request.getAttribute("topVente");
 
-if ( listTopLivre != null )
-    for(int i = 0; i < listTopLivre.size();i++)
-        out.println( "<b>" + listTopLivre.get(i).getTitreLivre() + " => " + listTopLivre.get(i).getNombreVenteLivre() + "</b><br />" );
+LibJsp.afficherListLivre(out, listTopLivre);
 
 %>
+</br>
 
 <%@include file="template_footer.jsp" %>

@@ -50,6 +50,7 @@ public class Catalogue extends HttpServlet {
 
             session.setPageTaille( req.getParameter("taillePage") );
 
+            req.setAttribute("titreCategorie", this.categorie.getCategorieById(categorie).getNomCategorie() );
             req.setAttribute("livre", livre.getLivreByCategorie( categorie, page, session.getPageTaille() ) );
         }
         else

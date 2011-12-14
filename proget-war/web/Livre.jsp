@@ -13,6 +13,7 @@ Livre livre = (Livre) request.getAttribute("livre");
 %>
 
 <%@include file="template_header.jsp" %>
+
         <form name="session" method="POST" action="Enregistrement" >
                 <table>
                         <tr>

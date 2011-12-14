@@ -4,32 +4,55 @@
     Author     : Treemo
 --%>
 
+<%@page import="lib.LibJsp"%>
 <%@page import="categorie.Categorie"%>
 <%@page import="livre.Livre"%>
 <%@page import="java.util.List"%>
 <%@include file="template_header.jsp" %>
-
 <%
 
-List<Livre> listLivre = (List<Livre>)request.getAttribute("livre");
+List<Categorie> listCategorie = (List<Categorie>)request.getAttribute("categorie");
 
-if ( listLivre != null ) {
+if ( listCategorie == null ) {
 
-    if ( listLivre != null )
-        for(int i = 0; i < listLivre.size();i++)
-            out.println( "<a href=\"Livre?livre=" + listLivre.get(i).getIdLivre() + "\">" + listLivre.get(i).getTitreLivre() + "</a><br />" );
-       else
-        out.println( "<b>Aucun livre dans cette categorie</b><br />" );
+    out.println("<div align=\"center\">");
+    out.println("<h3>"+request.getAttribute("titreCategorie")+"</h3>");
+    out.println("</div>");
+    List<Livre> listLivre = (List<Livre>)request.getAttribute("livre");
+
+    LibJsp.afficherListLivre(out, listLivre);
 }
-else {
+else if ( listCategorie != null ) {
     
-    List<Categorie> listCategorie = (List<Categorie>)request.getAttribute("categorie");
+            int tailleLargeur = 3;
 
-    if ( listCategorie != null )
-        for(int i = 0; i < listCategorie.size();i++)
-            out.println( "<a href=\"?categorie=" + listCategorie.get(i).getIdCategorie() + "\">" + listCategorie.get(i).getNomCategorie() + "</a><br />" );
-}
+            out.println("<div align=\"center\">");
+            out.println("<h3>Catégorie</h3>");
+            out.println("</div>");
+            
+            out.println("<table width=\"80%\" style=\"text-align:center\">");
+            out.println("<tr>");
 
-%>
+            for(int i = 0; i < listCategorie.size(); i++) {
 
+                if( i%(tailleLargeur+1) == 0 )
+                    out.println("</tr><tr>");
+                
+                    out.println("<td width=\""+(100/tailleLargeur)+"%\">");
+
+                    if ( i < listCategorie.size() ) {
+
+                        Categorie categorie = listCategorie.get(i);
+
+                        out.println( "<a href=\"?categorie=" + categorie.getIdCategorie() + "\">" + categorie.getNomCategorie() + "</a><br />" );
+                    }
+                    
+                    out.println("</td>");
+            }
+
+            out.println("</tr>");
+            out.println("</table>");
+    }
+ %>
+</br>
 <%@include file="template_footer.jsp" %>
