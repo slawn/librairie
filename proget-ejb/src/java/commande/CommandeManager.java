@@ -37,7 +37,9 @@ public class CommandeManager implements CommandeManagerBean {
     }
 
     public void creationDepuisPannier(Pannier new_commande){
-        
+        Commande la = new Commande();
+        la.creationDepuisPannier(new_commande);
+        this.em.persist(la);
     }
     
 }

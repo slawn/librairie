@@ -18,6 +18,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import pannier.Pannier;
+import java.util.List;
+import livre.Livre;
 
 /**
  *
@@ -53,6 +56,8 @@ public class Commande implements Serializable {
     @Column(name = "prix_commande")
     private Float prixCommande;
 
+    private List<Livre>livreCommande;
+    
     public Commande() {
     }
 
@@ -67,6 +72,14 @@ public class Commande implements Serializable {
 
     public Integer getIdCommande() {
         return idCommande;
+    }
+
+    public void setAjoutLivre(List<Livre> le){
+        livreCommande=le;
+    }
+
+    public List<Livre> getAjoutLivre(){
+        return livreCommande;
     }
 
     public void setIdCommande(Integer idCommande) {
@@ -136,6 +149,15 @@ public class Commande implements Serializable {
     @Override
     public String toString() {
         return "commande.Commande[idCommande=" + idCommande + "]";
+    }
+
+    public void creationDepuisPannier(Pannier le){
+        Date la_date=new Date();
+
+        setEtatCommande(1);
+        setDateCommande(la_date);
+        setPrixCommande(le.get_prix());
+        setAjoutLivre(le.getListLivre());
     }
 
 }
