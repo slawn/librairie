@@ -54,7 +54,7 @@
 	</ul>
 </nav>
         <form id="search_bar" method="post" action="Recherche">
-            <input type="text" name="name" id="search_bar_input" />
+            <input type="text" name="recherche" id="search_bar_input" />
             <input type="image" src="loupe.png" alt="Recherche" id="search_bar_submit"/>
         </form>
 <article id="corps">

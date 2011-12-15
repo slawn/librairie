@@ -12,6 +12,8 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import livre.Livre;
+import panier.PanierStruct;
 import utilisateur.Client;
 
 /**
@@ -48,5 +50,13 @@ public class CommandeManager implements CommandeManagerBean {
         commande.setEtatCommande( CommandeEnum.EN_COUR.getValue() );
 
         em.persist(commande);
+        
+/*        for ( PanierStruct panierStruct : new_commande.getListLivre() ) {
+         
+            ContenuCommande contenu = new ContenuCommande(panierStruct.livre.getIdLivre(), commande.getIdCommande() );
+            contenu.setNombre( panierStruct.ajoutNbPanier );
+            em.persist(contenu);
+        }
+*/
     }    
 }
