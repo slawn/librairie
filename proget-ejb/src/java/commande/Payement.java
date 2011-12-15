@@ -57,7 +57,7 @@ public class Payement {
 
              double i = Double.parseDouble( numCarte );
 
-             if ( i >= 1000000000000L && i < 10000000000000L )
+             if ( i >= 1000000000L && i < 10000000000L )
                  return true;
              
         } catch ( NumberFormatException e ) {

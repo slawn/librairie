@@ -51,7 +51,7 @@ public class Paiement extends HttpServlet {
 
             if ( payement.payer(session, pannier.getPrix(), typeCarte, numCarte, moisExpiration, anneeExpiration, cvv) ) {
 
-                commande.creationDepuisPannier(pannier);
+                commande.creationDepuisPannier(session.getClient(), pannier);
                 req.setAttribute("paiement", true);
             }
         }

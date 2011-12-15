@@ -5,6 +5,7 @@
 
 package commande;
 
+import java.util.Date;
 import panier.Panier;
 import java.util.List;
 import javax.ejb.Stateful;
@@ -36,8 +37,16 @@ public class CommandeManager implements CommandeManagerBean {
         return em.find(Commande.class,id);
     }
 
-    public void creationDepuisPannier(Panier new_commande){
-        
-    }
-    
+    @Override
+    public void creationDepuisPannier(Client client, Panier new_commande){
+
+        Commande commande = new Commande();
+        commande.setPrixCommande( new_commande.getPrix() );
+        commande.setAdressePostaleCommande( client.getAdressePostaleClient() );
+        commande.setDateCommande( new Date() );
+        commande.setIdClient( client.getIdClient() );
+        commande.setEtatCommande( CommandeEnum.EN_COUR.getValue() );
+
+        em.persist(commande);
+    }    
 }

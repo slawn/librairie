@@ -7,6 +7,7 @@ package commande;
 
 import java.util.List;
 import javax.ejb.Local;
+import panier.Panier;
 import utilisateur.Client;
 
 /**
@@ -22,6 +23,6 @@ public interface CommandeManagerBean {
 
     public commande.Commande getCommandeById(int id);
 
-    public void creationDepuisPannier(panier.Panier new_commande);
+    public void creationDepuisPannier(Client client, Panier new_commande);
 
 }
