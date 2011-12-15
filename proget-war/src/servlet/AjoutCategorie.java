@@ -5,6 +5,7 @@
 
 package servlet;
 
+import categorie.Categorie;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -32,6 +33,12 @@ public class AjoutCategorie extends HttpServlet {
 
         RequestDispatcher view = req.getRequestDispatcher("AjoutCategorie.jsp");
         view.forward(req, resp);
+
+        //if()
+       // {
+        Categorie categorie = new Categorie();
+        req.setAttribute("nom_categorie", categorie.getNomCategorie() );
+        //}
     }
 
     protected void doPost(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
