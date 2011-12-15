@@ -5,7 +5,8 @@
 
 package commande;
 
-import pannier.Pannier;
+import panier.Panier;
+import session.SessionUtilisateur;
 
 /**
  *
@@ -13,40 +14,58 @@ import pannier.Pannier;
  */
 public class Payement {
 
-        public String remboursement( Commande la_commande, Pannier le_pannier){
-            String message="L'anulation de votre commande n°"+la_commande.getIdCommande()+" a bien été pris en compte. Vous allez donc etre remboursé de totalité de la somme suivante : "+le_pannier.get_prix()+" €.  ALORS ARRETE DE NOUS FAIRE CHIER ENCULé DE FILS DE PUTE";
+        public String remboursement( Commande la_commande, Panier le_pannier){
+            String message="L'anulation de votre commande n°"+la_commande.getIdCommande()+" a bien été pris en compte. Vous allez donc etre remboursé de totalité de la somme suivante : "+le_pannier.getPrix()+" €";
 
             return message;
         }
 
-        public boolean payer(String champ_CB){
-            boolean paiement_ok,cb_ok;
+    public boolean payer(SessionUtilisateur session, float prix, String typeCarte, String numCarte, String moisExpiration, String anneeExpiration, String cvv) {
 
-            cb_ok=cbValider(champ_CB);
-            if(cb_ok)
-            {
-                paiement_ok=true;
-            }
-            else
-            {
-                paiement_ok=false;
-            }
-            return paiement_ok;
+        
+        if ( numCarte == null || numCarte.isEmpty() ) {
+
+            session.addErreur("Numéro de carte vide");
+            return false;
+        }
+        
+        if ( cvv == null || cvv.isEmpty() ) {
+
+            session.addErreur("Code CVV2 vide");
+            return false;
         }
 
-        public boolean cbValider(String codeCB){
-            boolean valide;
-            int taille=codeCB.length();
+        if ( !cbValide(typeCarte, numCarte, moisExpiration, anneeExpiration, cvv) ) {
 
-            if(taille==10)
-            {
-                valide=true;
-            }
-            else
-            {
-                valide=false;
-            }
-            return valide;
+            session.addErreur("Carte bancaire invalide");
+            return false;
         }
+
+        // payement validé par la banque ?
+        if ( true ) {
+
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean cbValide(String typeCarte, String numCarte, String moisExpiration, String anneeExpiration, String cvv) {
+
+        try {
+
+             double i = Double.parseDouble( numCarte );
+
+             if ( i >= 1000000000000L && i < 10000000000000L )
+                 return true;
+             
+        } catch ( NumberFormatException e ) {
+
+             return false;
+        }
+
+        return false;
+    }
 
 }

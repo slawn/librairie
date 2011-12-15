@@ -22,6 +22,6 @@ public interface CommandeManagerBean {
 
     public commande.Commande getCommandeById(int id);
 
-    public void creationDepuisPannier(pannier.Pannier new_commande);
+    public void creationDepuisPannier(panier.Panier new_commande);
 
 }

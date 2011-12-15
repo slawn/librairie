@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import panier.Panier;
 import utilisateur.Admin;
 import utilisateur.Client;
 
@@ -175,5 +176,23 @@ public class SessionUtilisateur implements Serializable {
     public int getPageTaille() {
 
         return Integer.parseInt( session.getAttribute("pageTaille").toString() );
+    }
+
+    /**
+     *  recupere le panier de l'utilisateur
+     *
+     * @return Panier
+     */
+    public Panier getPannier() {
+
+        Panier pannier = (Panier) session.getAttribute("pannier");
+
+        if ( pannier == null ) {
+
+            pannier = new Panier();
+            session.setAttribute("pannier", pannier);
+        }
+
+        return pannier;
     }
 }

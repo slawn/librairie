@@ -5,7 +5,7 @@
 
 package commande;
 
-import pannier.Pannier;
+import panier.Panier;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -36,10 +36,8 @@ public class CommandeManager implements CommandeManagerBean {
         return em.find(Commande.class,id);
     }
 
-    public void creationDepuisPannier(Pannier new_commande){
-        Commande la = new Commande();
-        la.creationDepuisPannier(new_commande);
-        this.em.persist(la);
+    public void creationDepuisPannier(Panier new_commande){
+        
     }
     
 }

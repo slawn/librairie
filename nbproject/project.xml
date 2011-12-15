@@ -8,7 +8,7 @@
             <web-module-libraries/>
             <web-module-additional-libraries>
                 <library>
-                    <file>${reference.proget-war.dist-ear}</file>
+                    <file>${reference.projet-war.dist-ear}</file>
                     <path-in-war>/</path-in-war>
                 </library>
                 <library>
@@ -27,7 +27,7 @@
                 <id>dist-ear</id>
             </reference>
             <reference>
-                <foreign-project>proget-war</foreign-project>
+                <foreign-project>projet-war</foreign-project>
                 <artifact-type>j2ee_ear_archive</artifact-type>
                 <script>build.xml</script>
                 <target>dist-ear</target>
